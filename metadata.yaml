@@ -2,4 +2,4 @@ homepage: "https://www.clickwise.net/"
 documentation: "https://www.example.com/documentation/gtm"
 versions:
   - sha: 5f02a788b90ae804f86b04aa24af8937e567874a
-    changeNotes: Initial release
+    changeNotes: Initial release.
