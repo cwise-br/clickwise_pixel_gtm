@@ -1,5 +1,5 @@
 homepage: "https://www.clickwise.net/"
 documentation: "https://www.clickwise.net/documentation/gtm"
 versions:
-  - sha: 5f02a788b90ae804f86b04aa24af8937e567874a
+  - sha: eed06cd93e2c183c824f636615ed75e134d0c49a
     changeNotes: Initial release.
