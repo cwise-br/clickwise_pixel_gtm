@@ -14,7 +14,6 @@ ___INFO___
   "version": 1,
   "securityGroups": [],
   "displayName": "Clickwise - Tracking Tag",
-  "categories": ["AFFILIATE_MARKETING", "ADVERTISING"],
   "brand": {
     "id": "brand_dummy",
     "displayName": "",
@@ -167,6 +166,6 @@ scenarios: []
 
 ___NOTES___
 
-Created on 11/02/2021 11:25:25
+Created on 11/02/2021 11:55:26
 
 
