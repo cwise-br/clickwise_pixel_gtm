@@ -1,1 +1,1 @@
-# guuhbali-clickwise-pixel-gtm
+# clickwise-pixel-gtm
