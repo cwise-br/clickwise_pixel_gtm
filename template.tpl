@@ -31,19 +31,6 @@ ___TEMPLATE_PARAMETERS___
 [
   {
     "type": "TEXT",
-    "name": "AccountId",
-    "displayName": "AccountId",
-    "simpleValueType": true,
-    "help": "",
-    "valueValidators": [
-      {
-        "type": "NON_EMPTY"
-      }
-    ],
-    "notSetText": ""
-  },
-  {
-    "type": "TEXT",
     "name": "CampaignID",
     "displayName": "CampaignID",
     "simpleValueType": true,
@@ -52,7 +39,7 @@ ___TEMPLATE_PARAMETERS___
         "type": "NON_EMPTY"
       }
     ],
-    "help": ""
+    "help": "Unique campaign ID on the Clickwise platform"
   },
   {
     "type": "SELECT",
@@ -65,15 +52,31 @@ ___TEMPLATE_PARAMETERS___
       {
         "type": "NON_EMPTY"
       }
-    ]
+    ],
+    "help": "Order number of the transaction - transaction ID"
   },
   {
     "type": "SELECT",
-    "name": "TotalCost",
-    "displayName": "TotalCost",
+    "name": "Amount",
+    "displayName": "Amount",
     "macrosInSelect": true,
     "selectItems": [],
     "simpleValueType": true,
+    "valueValidators": [
+      {
+        "type": "NON_EMPTY"
+      }
+    ],
+    "help": "Transaction amount - transactionTotal"
+  },
+  {
+    "type": "SELECT",
+    "name": "Shipping",
+    "displayName": "Shipping",
+    "macrosInSelect": true,
+    "selectItems": [],
+    "simpleValueType": true,
+    "help": "Transaction shipping - transactionShipping",
     "valueValidators": [
       {
         "type": "NON_EMPTY"
@@ -89,7 +92,8 @@ ___TEMPLATE_PARAMETERS___
       {
         "type": "NON_EMPTY"
       }
-    ]
+    ],
+    "help": "3 char currency code"
   }
 ]
 
@@ -102,14 +106,14 @@ const encodeUriComponent = require('encodeUriComponent');
 const log = require('logToConsole');
 
 // capture values of template fields
-const account = data.AccountId;
-const campaign = data.CampaignID;
-const order = data.OrderID;
-const totalcost = data.TotalCost;
-const currency = data.Currency;
-
+const campaign = encodeUriComponent(data.CampaignID);
+const order = encodeUriComponent(data.OrderID);
+const amount = encodeUriComponent(data.Amount);
+const currency = encodeUriComponent(data.Currency);
+const shipping = encodeUriComponent(data.Shipping);
+const totalcost = amount-shipping;
 // use the provided APIs to do things like send pixels
-const url = 'https://my.pampanetwork.com/scripts/sale.php?TotalCost=' + totalcost + '&AccountId=' + account + '&OrderID=' + order + '&ActionCode=sale&CampaignID=' + campaign + '&Currency=' + currency;
+const url = 'https://r.clickwise.net/t/' + campaign + '/sale/' + order + '?total-cost=' + totalcost + '&amp;currency=' + currency;
 sendPixel(url, data.gtmOnSuccess, data.gtmOnFailure);
 //log(url);
 
@@ -166,6 +170,6 @@ scenarios: []
 
 ___NOTES___
 
-Created on 11/02/2021 11:55:26
+Created on 26/03/2021 16:17:51
 
 
