@@ -13,7 +13,7 @@ ___INFO___
   "id": "cvt_temp_public_id",
   "version": 1,
   "securityGroups": [],
-  "displayName": "Clickwise - Tracking Tag",
+  "displayName": "Clickwise Pixel",
   "brand": {
     "id": "brand_dummy",
     "displayName": "",
@@ -74,14 +74,14 @@ ___TEMPLATE_PARAMETERS___
     "name": "Shipping",
     "displayName": "Shipping",
     "macrosInSelect": true,
-    "selectItems": [],
-    "simpleValueType": true,
-    "help": "Transaction shipping - transactionShipping",
-    "valueValidators": [
+    "selectItems": [
       {
-        "type": "NON_EMPTY"
+        "value": "withshipping",
+        "displayValue": "WithShipping"
       }
-    ]
+    ],
+    "simpleValueType": true,
+    "help": "Transaction shipping - transactionShipping"
   },
   {
     "type": "TEXT",
@@ -101,21 +101,58 @@ ___TEMPLATE_PARAMETERS___
 ___SANDBOXED_JS_FOR_WEB_TEMPLATE___
 
 // require relevant API
-const sendPixel = require('sendPixel');
-const encodeUriComponent = require('encodeUriComponent');
-const log = require('logToConsole');
-
-// capture values of template fields
-const campaign = encodeUriComponent(data.CampaignID);
-const order = encodeUriComponent(data.OrderID);
-const amount = encodeUriComponent(data.Amount);
-const currency = encodeUriComponent(data.Currency);
-const shipping = encodeUriComponent(data.Shipping);
-const totalcost = amount-shipping;
+	const sendPixel = require('sendPixel');
+	const encodeUriComponent = require('encodeUriComponent');
+	const log = require('logToConsole');
+	
+	// capture values of template fields
+	const campaign = encodeUriComponent(data.CampaignID);
+	const order = encodeUriComponent(data.OrderID);
+	const amount = encodeUriComponent(data.Amount);
+	const currency = encodeUriComponent(data.Currency);
+	const shipping = encodeUriComponent(data.Shipping);
+	var totalcost = 0;
+	var log_1 = "";
+	if(shipping == "withshipping"){
+	  totalcost = amount;
+	}else {
+	  totalcost = amount-shipping;
+	} 
+	 switch (shipping) {
+		 case null:
+		   log_1 = "Shipping = " +shipping;
+		   log(log_1);
+		   break;
+		 case undefined:
+		   log_1 = "Shipping = " +shipping;
+		   log(log_1);
+		   break;
+	}
+	 switch (amount) {
+		 case null:
+		   log_1 = "Amount = "+ amount;
+		   log(log_1);
+		   break;
+		 case undefined:
+		   log_1 = "Amount = "+ amount;
+		   log(log_1);
+		   break;
+	}
+	
+	 switch (order) {
+		 case null:
+		   log_1 = "Order = "+ order;
+		   log(log_1);
+		   break;
+		 case undefined:
+		   log_1 = "Order = "+ order;
+		   log(log_1);
+		   break;
+	}
 // use the provided APIs to do things like send pixels
 const url = 'https://r.clickwise.net/t/' + campaign + '/sale/' + order + '?total-cost=' + totalcost + '&amp;currency=' + currency;
 sendPixel(url, data.gtmOnSuccess, data.gtmOnFailure);
-//log(url);
+log(url);
 
 
 ___WEB_PERMISSIONS___
@@ -124,15 +161,15 @@ ___WEB_PERMISSIONS___
   {
     "instance": {
       "key": {
-        "publicId": "send_pixel",
+        "publicId": "logging",
         "versionId": "1"
       },
       "param": [
         {
-          "key": "allowedUrls",
+          "key": "environments",
           "value": {
             "type": 1,
-            "string": "any"
+            "string": "all"
           }
         }
       ]
@@ -145,15 +182,15 @@ ___WEB_PERMISSIONS___
   {
     "instance": {
       "key": {
-        "publicId": "logging",
+        "publicId": "send_pixel",
         "versionId": "1"
       },
       "param": [
         {
-          "key": "environments",
+          "key": "allowedUrls",
           "value": {
             "type": 1,
-            "string": "debug"
+            "string": "specific"
           }
         }
       ]
@@ -170,6 +207,6 @@ scenarios: []
 
 ___NOTES___
 
-Created on 26/03/2021 16:17:51
+Created on 28/03/2021 15:41:02
 
 
