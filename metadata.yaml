@@ -1,6 +1,8 @@
 homepage: "https://www.clickwise.net/"
 documentation: "https://guubal.github.io/cwbr/documentation/en/"
 versions:
+  - sha: 7e7713f812681ea92a6dd3d69cd57e745d7f615a
+    changeNotes: Added new modifications and bug fixed.
   - sha: 6e577b603c643dd018666ba021aa003b5d5592df
     changeNotes: Fix Bugs.
   - sha: eed06cd93e2c183c824f636615ed75e134d0c49a
