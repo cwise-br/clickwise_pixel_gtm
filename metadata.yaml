@@ -1,5 +1,7 @@
 homepage: "https://www.clickwise.net/"
-documentation: "https://www.clickwise.net/documentation/gtm"
+documentation: "https://guubal.github.io/cwbr/documentation/en/"
 versions:
   - sha: 6e577b603c643dd018666ba021aa003b5d5592df
+    changeNotes: Fix Bugs.
+  - sha: eed06cd93e2c183c824f636615ed75e134d0c49a
     changeNotes: Initial release.
