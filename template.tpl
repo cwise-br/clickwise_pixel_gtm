@@ -101,6 +101,7 @@ ___TEMPLATE_PARAMETERS___
 ___SANDBOXED_JS_FOR_WEB_TEMPLATE___
 
 // require relevant API
+    const queryPermission = require('queryPermission');
 	const sendPixel = require('sendPixel');
 	const encodeUriComponent = require('encodeUriComponent');
 	const log = require('logToConsole');
@@ -112,43 +113,12 @@ ___SANDBOXED_JS_FOR_WEB_TEMPLATE___
 	const currency = encodeUriComponent(data.Currency);
 	const shipping = encodeUriComponent(data.Shipping);
 	var totalcost = 0;
-	var log_1 = "";
+	//var log_1 = "";
 	if(shipping == "withshipping"){
 	  totalcost = amount;
 	}else {
 	  totalcost = amount-shipping;
 	} 
-	 switch (shipping) {
-		 case null:
-		   log_1 = "Shipping = " +shipping;
-		   log(log_1);
-		   break;
-		 case undefined:
-		   log_1 = "Shipping = " +shipping;
-		   log(log_1);
-		   break;
-	}
-	 switch (amount) {
-		 case null:
-		   log_1 = "Amount = "+ amount;
-		   log(log_1);
-		   break;
-		 case undefined:
-		   log_1 = "Amount = "+ amount;
-		   log(log_1);
-		   break;
-	}
-	
-	 switch (order) {
-		 case null:
-		   log_1 = "Order = "+ order;
-		   log(log_1);
-		   break;
-		 case undefined:
-		   log_1 = "Order = "+ order;
-		   log(log_1);
-		   break;
-	}
 // use the provided APIs to do things like send pixels
 const url = 'https://r.clickwise.net/t/' + campaign + '/sale/' + order + '?total-cost=' + totalcost + '&amp;currency=' + currency;
 sendPixel(url, data.gtmOnSuccess, data.gtmOnFailure);
@@ -169,7 +139,7 @@ ___WEB_PERMISSIONS___
           "key": "environments",
           "value": {
             "type": 1,
-            "string": "all"
+            "string": "debug"
           }
         }
       ]
@@ -192,8 +162,23 @@ ___WEB_PERMISSIONS___
             "type": 1,
             "string": "specific"
           }
+        },
+        {
+          "key": "urls",
+          "value": {
+            "type": 2,
+            "listItem": [
+              {
+                "type": 1,
+                "string": "https://r.clickwise.net/"
+              }
+            ]
+          }
         }
       ]
+    },
+    "clientAnnotations": {
+      "isEditedByUser": true
     },
     "isRequired": true
   }
@@ -207,6 +192,6 @@ scenarios: []
 
 ___NOTES___
 
-Created on 28/03/2021 15:41:02
+Created on 07/04/2021 10:33:44
 
 
