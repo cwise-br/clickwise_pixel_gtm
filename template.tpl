@@ -120,7 +120,7 @@ ___SANDBOXED_JS_FOR_WEB_TEMPLATE___
 	  totalcost = amount-shipping;
 	} 
 // use the provided APIs to do things like send pixels
-const url = 'https://r.clickwise.net/t/' + campaign + '/sale/' + order + '?total-cost=' + totalcost + '&amp;currency=' + currency;
+const url = 'https://r.clickwise.net/t/' + campaign + '/sale/' + order + '?total-cost=' + totalcost + '&currency=' + currency;
 sendPixel(url, data.gtmOnSuccess, data.gtmOnFailure);
 log(url);
 
