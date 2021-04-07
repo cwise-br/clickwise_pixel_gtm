@@ -1,5 +1,5 @@
 homepage: "https://www.clickwise.net/"
-documentation: "https://guubal.github.io/cwbr/documentation/en/"
+documentation: "https://guubal.github.io/cwbr/documentation/"
 versions:
   - sha: b700e72be150f9c9337f4e9ed1a81ee72c1c3f34
     changeNotes: Added new modifications.
